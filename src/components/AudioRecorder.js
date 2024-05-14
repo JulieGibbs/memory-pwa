@@ -89,7 +89,7 @@ const AudioRecorder = () => {
                     <div className='mic-button' onClick={stopRecording}><StopIcon /></div>
                 ) : null}
                 {recordingStatus === "completed" ? (
-                    <div>
+                    <div style={{width:'100%', display:'flex', flexDirection:'column', alignItems:'center'}}>
                         <div className='re-rec' onClick={() => setRecordingStatus("inactive")}>Re-record</div>
                         <div className='get-mic' onClick={stopRecording}>Save</div>
                     </div>

@@ -1,4 +1,5 @@
 .get-mic {
+    width: 70%;
     height: 40px;
     border-radius: 20px;
     background-color: #1A836D;
@@ -9,6 +10,7 @@
     cursor: pointer;
 }
 .re-rec {
+    width: 70%;
     height: 40px;
     border-radius: 20px;
     background-color: #BDBDBD;
@@ -19,5 +21,11 @@
     cursor: pointer;
 }
 .audio-container{
-    margin: auto !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.audio-controls{
+    display: flex;
+    justify-content: center;
 }
