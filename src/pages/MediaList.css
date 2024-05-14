@@ -1,0 +1,19 @@
+.container {
+    padding: 0px !important;
+}
+
+.medialist-top-bar {
+    display: flex;
+    justify-content: space-between;
+    color: #000000;
+    margin: 3%;
+}
+
+.medialist-top-bar a{
+    color:#000;
+    text-decoration: none;
+}
+
+.medialist-top-bar a:last-child {
+    color: #BDBDBD
+}

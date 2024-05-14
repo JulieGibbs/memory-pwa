@@ -1,0 +1,60 @@
+.video-panel{
+    margin: 2%;
+    width: 70%;
+}
+.video-card{
+    background-color: #FFFFFD;
+    border-radius: 5%;
+    position: relative;
+}
+.play-button{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #1A836D;
+    color: white;
+    display: flex;
+    align-items: center;       
+    justify-content: center;  
+    position: absolute;
+    left: 45%;
+    top: 35%;                                                                                                                                 
+}
+.play-slider{
+    width: 90% !important;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.css-eqpfi5-MuiAccordionSummary-content{
+    margin: 0px !important;
+}
+
+.css-188mx6n-MuiSlider-root{
+    color: #1A836D !important;
+}
+.css-sn936a-MuiSlider-root{
+    padding: 0px !important;
+}
+
+/* slider line css */
+
+.css-7o8aqz-MuiSlider-rail{
+    background-color: #4F4F4F !important;
+    height: 1px !important;
+}
+
+/* slider circle */
+
+.css-cp2j25-MuiSlider-thumb{
+    width: 10px !important;
+    height: 10px !important;
+}
+
+/* slider line track (done) */
+
+.css-ttgsjq-MuiSlider-track{
+    height: 1px !important;
+}

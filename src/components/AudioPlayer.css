@@ -1,0 +1,82 @@
+.audio-panel{
+    width: 70%;
+    margin: 2%;
+}
+.audio-card{
+    background-color: #FFFFFD;
+    
+    border-radius: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.audio-up{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.audio-play-button{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #1A836D;
+    color: white;
+    display: flex;
+    align-items: center;       
+    justify-content: center;                                                                                                                                            
+}
+.audio-play-slider{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.audio-play-slider .MuiSlider-root{
+    padding:0px !important;
+}
+.slider-values{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.value-text{
+    font-size: 10px;
+    color: #4F4F4F;
+}
+.transcript{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+}
+.accordion p{
+    font-size: 14px;
+}
+.css-eqpfi5-MuiAccordionSummary-content{
+    margin: 0px !important;
+}
+
+
+.css-sn936a-MuiSlider-root{
+    padding: 0px !important;
+}
+
+/* slider line css */
+
+.css-7o8aqz-MuiSlider-rail{
+    background-color: #4F4F4F !important;
+    height: 1px !important;
+}
+
+/* slider circle */
+
+.css-cp2j25-MuiSlider-thumb{
+    width: 10px !important;
+    height: 10px !important;
+}
+
+/* slider line track (done) */
+
+.css-ttgsjq-MuiSlider-track{
+    height: 1px !important;
+}
