@@ -11,7 +11,7 @@ import VideoPlayer from '../components/VideoPlayer';
 import Modal from '@mui/material/Modal';
 import { Drawer, Input, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-
+import AudioRecorder from '../components/AudioRecorder';
 const Memory = () => {
 
 
@@ -19,26 +19,21 @@ const Memory = () => {
     const handleNoteopen = () => setNoteopen(true);
     const handleNoteclose = () => setNoteopen(false);
 
-    const [progress, setProgress] = React.useState(10);
 
-    const [inputting, setInputting] =React.useState('');
+    const [inputting, setInputting] = React.useState('');
     const [notes, setNotes] = React.useState([])
 
-    React.useEffect(() => {
-        const timer = setInterval(() => {
-            setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
-        }, 800);
-        return () => {
-            clearInterval(timer);
-        };
-    }, []);
+    const [recopen, setRecopen] = React.useState(false);
+    const handleRecopen = () => setRecopen(true);
+    const handleRecclose = () => setRecopen(false);
 
-    const handleInputChange =(e)=>{
+
+    const handleInputChange = (e) => {
         setInputting(e.target.value)
     }
 
-    const AddNote=()=>{
-        let tmp=notes
+    const AddNote = () => {
+        let tmp = notes
         tmp.push(inputting)
         setNotes(tmp)
     }
@@ -76,8 +71,18 @@ const Memory = () => {
                 <div style={{ padding: '20px' }} className='note-drawer'>
                     <div onClick={handleNoteclose}><CloseIcon className='close-button' /></div>
                     <h2>What's on your mind?</h2>
-                    <Input aria-label="Demo input" multiline className='note-input' onChange={handleInputChange } />
+                    <Input aria-label="record" multiline className='note-input' onChange={handleInputChange} />
                     <Button className='note-button' onClick={AddNote}>Add note</Button>
+                </div>
+            </Drawer>
+
+
+            <Drawer key='record-drawer' anchor="bottom" open={recopen} onClose={handleRecclose}>
+                <div style={{ padding: '20px' }} className='rec-drawer'>
+                    <div onClick={handleRecclose}><CloseIcon className='close-button' /></div>
+                    <h2>What's on your mind?</h2>
+                    <AudioRecorder />
+
                 </div>
             </Drawer>
 
@@ -87,7 +92,7 @@ const Memory = () => {
                 <div className='footer-button' onClick={handleNoteopen}>
                     <PostAddIcon /> Add notes
                 </div>
-                <div className='mic-button'><MicIcon /></div>
+                <div className='mic-button' onClick={handleRecopen}><MicIcon /></div>
                 <Link to='medias'>
                     <div className='footer-button'>
                         <AddPhotoAlternateIcon /> Add media

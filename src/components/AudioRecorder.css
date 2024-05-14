@@ -1,0 +1,23 @@
+.get-mic {
+    height: 40px;
+    border-radius: 20px;
+    background-color: #1A836D;
+    color: #F2F2F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.re-rec {
+    height: 40px;
+    border-radius: 20px;
+    background-color: #BDBDBD;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.audio-container{
+    margin: auto !important;
+}
