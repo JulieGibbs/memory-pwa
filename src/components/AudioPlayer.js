@@ -34,8 +34,7 @@ const AudioProgressBar = (props) => {
     );
 }
 
-const AudioPlayer = () => {
-
+const AudioPlayer = (audio_url) => {
     const audioRef = React.useRef(null);
     const [duration, setDuration] = React.useState(0);
     const [isReady, setIsReady] = React.useState(false);
@@ -95,8 +94,9 @@ const AudioPlayer = () => {
                             handleBufferProgress(e);
                         }}
                         onProgress={handleBufferProgress}
+                        src={audio_url.audio_url}
                     >
-                        <source src={'assests/audio/dark-engine.mp3'} />
+                       
                     </audio>
                     <div className='audio-play-button' onClick={togglePlayPause}>
                         {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}

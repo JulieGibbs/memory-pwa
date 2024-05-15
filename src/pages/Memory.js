@@ -12,6 +12,10 @@ import Modal from '@mui/material/Modal';
 import { Drawer, Input, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AudioRecorder from '../components/AudioRecorder';
+import MediaList from './MediaList';
+
+export const MemoryContext = React.createContext({});
+
 const Memory = () => {
 
 
@@ -21,11 +25,17 @@ const Memory = () => {
 
 
     const [inputting, setInputting] = React.useState('');
-    const [notes, setNotes] = React.useState([])
+    const [notes, setNotes] = React.useState([]);
+    const [audios, setAudios] = React.useState([]);
+    const [medias, setMedias] = React.useState([]);
 
     const [recopen, setRecopen] = React.useState(false);
     const handleRecopen = () => setRecopen(true);
     const handleRecclose = () => setRecopen(false);
+
+    const [mediaopen, setMediaopen] = React.useState(false);
+    const handleMediaopen = () => setMediaopen(true);
+    const handleMediaclose = () => setMediaopen(false);
 
 
     const handleInputChange = (e) => {
@@ -52,9 +62,26 @@ const Memory = () => {
                 </div>
             </div>
             <div className='body'>
-
-                <AudioPlayer />
+                {audios.map((item, index) => {
+                    return (<AudioPlayer audio_url={item} />)
+                })}
+                
                 <VideoPlayer />
+                {medias.map((item, index) => {
+                    return (
+                        <div style={{margin:'3%'}}>
+                            <img
+                                srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                                src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                                alt={item.title}
+                                loading="lazy"
+                                style={{borderRadius:'10px'}}
+                            />
+                        </div>
+
+                    )
+
+                })}
                 {notes.map((item, index) => {
                     return (
                         <div className='note-panel'>
@@ -81,22 +108,27 @@ const Memory = () => {
                 <div style={{ padding: '20px' }} className='rec-drawer'>
                     <div onClick={handleRecclose}><CloseIcon className='close-button' /></div>
                     <h2>What's on your mind?</h2>
-                    <AudioRecorder />
-
+                    <MemoryContext.Provider value={{ audios, setAudios }}>
+                        <AudioRecorder />
+                    </MemoryContext.Provider>
                 </div>
             </Drawer>
 
-
+            <Drawer key='media-select-drawer' anchor='bottom' open={mediaopen} onClose={handleMediaclose}>
+                <MemoryContext.Provider value={{ medias, setMedias, handleMediaclose }}>
+                    <MediaList />
+                </MemoryContext.Provider>
+            </Drawer>
 
             <div className='footer'>
                 <div className='footer-button' onClick={handleNoteopen}>
                     <PostAddIcon /> Add notes
                 </div>
                 <div className='mic-button' onClick={handleRecopen}><MicIcon /></div>
-                <Link to='medias'>
-                    <div className='footer-button'>
-                        <AddPhotoAlternateIcon /> Add media
-                    </div></Link>
+                <div className='footer-button' onClick={handleMediaopen}>
+                    <AddPhotoAlternateIcon /> Add media
+
+                </div>
 
             </div>
 

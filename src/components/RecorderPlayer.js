@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PauseIcon from '@mui/icons-material/Pause';
 import ReactAudioPlayer from 'react-audio-player';
 
-import './AudioPlayer.css'
+import './RecorderPlayer.css'
 import { IconButton } from '@mui/material';
 
 const AudioProgressBar = (props) => {
@@ -34,7 +34,7 @@ const AudioProgressBar = (props) => {
     );
 }
 
-const RecorderPlayer = (audio_url) => {
+const RecorderPlayer = (recorder_url) => {
 
     const audioRef = React.useRef(null);
     const [duration, setDuration] = React.useState(0);
@@ -96,7 +96,7 @@ const RecorderPlayer = (audio_url) => {
                     }}
                     onProgress={handleBufferProgress}
                 >
-                    <source src={'blob:http://localhost:3000/c1bd1fc9-c2da-4064-a1b7-b2b0637c1b86'} />
+                    <source src={recorder_url.recorder_url} />
                 </audio>
                 <div className='audio-play-slider'>
                     <AudioProgressBar

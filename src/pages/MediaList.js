@@ -4,19 +4,21 @@ import ImageListItem from '@mui/material/ImageListItem';
 import Checkbox from '@mui/material/Checkbox';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import { MemoryContext } from './Memory';
 import { Link } from 'react-router-dom';
 import './MediaList.css'
 const MediaList = () => {
 
   const [checkedMedia, setCheckedMedia] = React.useState([])
   const [addColor, setAddcolor]=React.useState('#000000')
+  const {medias, setMedias, handleMediaclose}=React.useContext(MemoryContext)
   const handleCheckboxChange = (src) => {
     let tmp = checkedMedia
-    if (tmp.indexOf(`${src}?w=164&h=164&fit=crop&auto=format`) !== -1) {
-      tmp.pop(`${src}?w=164&h=164&fit=crop&auto=format`)
+    if (tmp.indexOf(src) !== -1) {
+      tmp.pop(src)
     }
     else {
-      tmp.push(`${src}?w=164&h=164&fit=crop&auto=format`)
+      tmp.push(src)
     }
 
     if (tmp.length>=1){
@@ -26,15 +28,20 @@ const MediaList = () => {
       setAddcolor('#000000')
     }
     setCheckedMedia(tmp)
-    console.log('------------', checkedMedia)
+  }
+
+  const addMedias=()=>{
+    let array1=medias
+    let array2=checkedMedia
+    setMedias(array1.concat(array2))
   }
 
   return (
     <div className='container'>
       <div className='medialist-top-bar'>
-        <Link to={'/'}>Cancel</Link>
+        <div onClick={handleMediaclose}>Cancel</div>
         <b>Select Media</b>
-        <a style={{color:addColor}}>Add</a>
+        <a style={{color:addColor}} onClick={addMedias}>Add</a>
       </div>
       <ImageList sx={{ width: '100%', height: '100%' }} cols={3} rowHeight={164} style={{ position: 'relative' }}>
         {itemData.map((item) => (

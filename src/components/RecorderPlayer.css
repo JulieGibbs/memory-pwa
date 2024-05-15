@@ -11,8 +11,9 @@
 }
 .audio-up{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     margin-left: 5%;
     margin-right: 5%;
 }

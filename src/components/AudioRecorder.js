@@ -1,10 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import MicIcon from '@mui/icons-material/Mic';
 
 import StopIcon from '@mui/icons-material/Stop';
 import RecorderPlayer from "./RecorderPlayer";
+import { MemoryContext } from "../pages/Memory";
 
 import './AudioRecorder.css'
+import AudioPlayer from "./AudioPlayer";
 const AudioRecorder = () => {
     const mimeType = "audio/webm";
 
@@ -14,6 +16,8 @@ const AudioRecorder = () => {
     const [stream, setStream] = useState(null);
     const [audioChunks, setAudioChunks] = useState([]);
     const [audio, setAudio] = useState(null);
+
+    const {audios, setAudios}=useContext(MemoryContext)
 
     const getMicrophonePermission = async () => {
         if ("MediaRecorder" in window) {
@@ -65,7 +69,9 @@ const AudioRecorder = () => {
     };
 
     const saveRecording = () => {
-
+        let tmp=audios
+        tmp.push(audio)
+        setAudios(tmp)
     }
 
 
@@ -73,7 +79,7 @@ const AudioRecorder = () => {
         <div>
             {audio ? (
                 <div className="audio-container">
-                    <audio src={audio} controls></audio>
+                    <RecorderPlayer recorder_url={audio}></RecorderPlayer>
                 </div>
             ) : null}
             <div className="audio-controls">
@@ -91,7 +97,7 @@ const AudioRecorder = () => {
                 {recordingStatus === "completed" ? (
                     <div style={{width:'100%', display:'flex', flexDirection:'column', alignItems:'center'}}>
                         <div className='re-rec' onClick={() => setRecordingStatus("inactive")}>Re-record</div>
-                        <div className='get-mic' onClick={stopRecording}>Save</div>
+                        <div className='get-mic' onClick={saveRecording}>Save</div>
                     </div>
 
                 ) : null}
